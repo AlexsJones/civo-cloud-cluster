@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: kube-system
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: cert-manager
+    server: {{ .Values.cluster }}
+  project: {{ .Values.project }}
+  source:
+    chart: jetstack/cert-manager
+    helm:
+      parameters:
+      - name: installCRDs
+        value: "true"
+      valueFiles:
+      - values.yaml
+    repoURL: https://charts.jetstack.io
+    targetRevision: 1.0.2
