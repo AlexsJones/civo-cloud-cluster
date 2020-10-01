@@ -27,3 +27,5 @@ post-install:
 	kubectl wait --for=condition=ready pods -l "app=webhook" -n cert-manager
 	kubectl apply -f resources/issuer.yaml
 	kubectl apply -f resources/cluster-ingress.yaml -n kube-system
+	kubectl apply -f resources/opa/constraint-template-priviledged-contrainer.yaml -n gatekeeper-system
+	kubectl apply -f resources/opa/constraint-template-impl-contrainer.yaml -n kube-system
