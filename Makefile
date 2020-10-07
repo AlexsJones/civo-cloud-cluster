@@ -1,7 +1,7 @@
 .PHONY: up down deploy
 
 up:
-	civo kubernetes create interesting-times-gang -n3 --wait --remove-applications=traefik 
+	civo kubernetes create interesting-times-gang -n5 --wait --remove-applications=traefik 
 	civo kubernetes config interesting-times-gang -s
 down:
 	civo kubernetes delete interesting-times-gang
